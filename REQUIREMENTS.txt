@@ -2,3 +2,5 @@ streamlit
 sentence-transformers
 scikit-learn
 numpy
+torch
+transformers
