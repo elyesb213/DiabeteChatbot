@@ -1,0 +1,179 @@
+### 1. Définition du diabète de type 2
+Le diabète de type 2 est une maladie métabolique chronique caractérisée par une hyperglycémie, c’est-à-dire un excès de glucose dans le sang. 
+Cette hyperglycémie résulte d’une résistance des cellules à l’action de l’insuline, associée à une production insuffisante de cette hormone par le pancréas. 
+L’insuline permet normalement au glucose d’entrer dans les cellules pour être utilisé comme source d’énergie. 
+Lorsque ce mécanisme est perturbé, le sucre s’accumule dans le sang, provoquant à long terme des complications sur plusieurs organes.
+
+---
+
+### 2. Différences entre diabète de type 1 et type 2
+Le diabète de type 1 est une maladie auto-immune : le système immunitaire détruit les cellules bêta du pancréas qui produisent l’insuline. 
+Il survient souvent chez l’enfant ou le jeune adulte, et le traitement repose toujours sur des injections d’insuline.
+Le diabète de type 2, lui, apparaît généralement après 40 ans, bien qu’il soit de plus en plus fréquent chez l’adolescent. 
+Il est fortement lié au surpoids, à la sédentarité, et à l’alimentation déséquilibrée. 
+Le traitement associe hygiène de vie et médicaments oraux, et parfois de l’insuline si nécessaire.
+
+---
+
+### 3. Les causes et facteurs de risque
+Les principaux facteurs de risque du diabète de type 2 sont :
+- Le surpoids et l’obésité, notamment abdominale
+- Une alimentation trop riche en sucres et graisses
+- Le manque d’activité physique
+- L’âge supérieur à 40 ans
+- Les antécédents familiaux de diabète
+- Certaines origines ethniques plus à risque
+- Le stress chronique et le manque de sommeil
+Il existe également un lien entre le syndrome des ovaires polykystiques, l’hypertension artérielle et le risque de développer un diabète de type 2.
+
+---
+
+### 4. Les symptômes du diabète
+Au début, le diabète de type 2 peut ne provoquer aucun symptôme. 
+Lorsque la glycémie devient élevée, on peut observer :
+- une soif excessive (polydipsie)
+- une envie d’uriner fréquente (polyurie)
+- une fatigue inhabituelle
+- une vision floue
+- une cicatrisation lente
+- des infections répétées (mycoses, infections urinaires)
+- parfois une perte de poids inexpliquée
+Un dépistage par prise de sang permet souvent de poser le diagnostic avant que les symptômes n’apparaissent.
+
+---
+
+### 5. Diagnostic biologique
+Le diagnostic se base sur une glycémie à jeun supérieure ou égale à 1,26 g/L à deux reprises, 
+ou une glycémie post-prandiale (après repas) supérieure à 2 g/L, 
+ou une HbA1c (hémoglobine glyquée) supérieure ou égale à 6,5%. 
+L’HbA1c reflète la glycémie moyenne sur les trois derniers mois et permet de suivre l’équilibre du diabète.
+
+---
+
+### 6. Les objectifs du traitement
+Le traitement vise à :
+- maintenir une glycémie proche de la normale
+- prévenir les complications à long terme
+- améliorer la qualité de vie
+Les objectifs glycémiques sont généralement une HbA1c < 7%, 
+mais ils doivent être adaptés selon l’âge, les comorbidités et le risque d’hypoglycémie du patient.
+
+---
+
+### 7. Mesures hygiéno-diététiques
+L’alimentation équilibrée est la base du traitement du diabète. 
+Les recommandations incluent :
+- réduire les sucres rapides (sodas, pâtisseries, sucreries)
+- privilégier les fibres (légumes, légumineuses, fruits entiers)
+- limiter les graisses saturées (charcuterie, fritures)
+- consommer des protéines maigres (poisson, volaille)
+- répartir les glucides sur la journée
+Le régime méditerranéen ou DASH est souvent conseillé.  
+La perte de poids, même modérée, améliore fortement la sensibilité à l’insuline.
+
+---
+
+### 8. Activité physique
+L’activité physique régulière aide à stabiliser la glycémie, perdre du poids et renforcer le cœur.  
+L’OMS recommande au moins 150 minutes d’activité modérée par semaine, 
+comme la marche rapide, le vélo, la natation ou le jardinage.  
+L’exercice augmente la sensibilité à l’insuline et diminue les besoins médicamenteux.
+
+---
+
+### 9. Médicaments antidiabétiques
+Les principaux médicaments utilisés sont :
+- **Metformine** : traitement de première intention, diminue la production hépatique de glucose.
+- **Inhibiteurs de DPP-4** (sitagliptine, vildagliptine) : stimulent la sécrétion d’insuline.
+- **Agonistes GLP-1** (liraglutide, semaglutide) : ralentissent la digestion et favorisent la perte de poids.
+- **Inhibiteurs de SGLT2** (dapagliflozine, empagliflozine) : augmentent l’élimination du sucre dans les urines.
+- **Insuline** : utilisée si les autres traitements ne suffisent plus.
+Chaque médicament a ses indications, contre-indications et effets secondaires. Leur prescription doit être encadrée par un médecin.
+
+---
+
+### 10. Complications du diabète
+Un diabète mal équilibré peut provoquer :
+- **Rétinopathie diabétique** : atteinte de la rétine, risque de cécité
+- **Néphropathie diabétique** : atteinte des reins, risque d’insuffisance rénale
+- **Neuropathie périphérique** : douleurs, perte de sensibilité, ulcères du pied
+- **Atteinte cardiovasculaire** : infarctus, AVC, artérite
+- **Infections fréquentes** : en raison d’une baisse de l’immunité
+La prévention repose sur un bon équilibre glycémique, le contrôle de la tension artérielle et du cholestérol, et un suivi régulier.
+
+---
+
+### 11. Hypoglycémie et hyperglycémie
+Une hypoglycémie correspond à une glycémie inférieure à 0,7 g/L. 
+Elle peut entraîner tremblements, sueurs, faim, confusion, voire perte de connaissance.  
+Elle doit être corrigée immédiatement par 15 g de sucre rapide (3 morceaux ou un verre de jus).
+L’hyperglycémie est une glycémie supérieure à 1,8 g/L. 
+Elle provoque soif intense, urines fréquentes, fatigue.  
+Si elle persiste, un avis médical est nécessaire.
+
+---
+
+### 12. Suivi médical
+Un patient diabétique doit être suivi au minimum :
+- par son médecin traitant tous les 3 à 6 mois
+- par un ophtalmologue tous les ans
+- par un cardiologue et un néphrologue selon les cas
+Le suivi inclut des analyses sanguines (HbA1c, cholestérol, créatinine) et urinaires (protéinurie), ainsi qu’un examen des pieds régulier.
+
+---
+
+### 13. Éducation thérapeutique
+L’éducation thérapeutique vise à rendre le patient acteur de sa maladie.  
+Elle aborde la surveillance glycémique, la gestion de l’alimentation, la reconnaissance des signes d’hypoglycémie, 
+et l’importance du traitement.  
+Des programmes hospitaliers ou associatifs sont proposés pour aider à mieux comprendre et vivre avec le diabète.
+
+---
+
+### 14. Diabète et alimentation spécifique
+Les diabétiques peuvent consommer des fruits (pomme, orange, fraises) mais doivent limiter les jus industriels.  
+Les édulcorants (aspartame, stévia) peuvent être utilisés avec modération.  
+L’alcool est autorisé en petite quantité, mais à éviter à jeun car il peut provoquer une hypoglycémie.  
+Les produits “sans sucre ajouté” ne sont pas toujours sans glucides : il faut vérifier les étiquettes.
+
+---
+
+### 15. Diabète et autres pathologies
+Le diabète augmente le risque de maladies cardiovasculaires, d’hypertension, de troubles rénaux et d’accidents vasculaires cérébraux.  
+Une prise en charge globale (tension, poids, lipides, arrêt du tabac) est donc essentielle.  
+Chez la femme enceinte diabétique, un suivi particulier est nécessaire pour éviter les complications fœtales.
+
+---
+
+### 16. Prévention
+Les mesures de prévention incluent :
+- alimentation équilibrée dès le jeune âge
+- activité physique régulière
+- maintien d’un poids santé
+- réduction des boissons sucrées et de la sédentarité
+Un dépistage régulier est recommandé pour les personnes à risque : surpoids, antécédents familiaux, hypertension.
+
+---
+
+### 17. Vivre avec le diabète
+Vivre avec un diabète demande des ajustements, mais il est possible d’avoir une vie normale. 
+L’utilisation des capteurs de glycémie en continu simplifie le suivi. 
+Les associations de patients apportent un soutien psychologique et pratique. 
+L’objectif est d’équilibrer la glycémie sans nuire à la qualité de vie.
+
+---
+
+### 18. Urgences à connaître
+Il faut consulter en urgence ou appeler le 15 en cas de :
+- malaise avec perte de connaissance
+- vomissements répétés
+- confusion ou respiration rapide
+- plaie du pied qui ne cicatrise pas
+- glycémie très élevée (>3 g/L) persistante malgré le traitement
+
+---
+
+### 19. Conclusion
+Le diabète de type 2 est une maladie fréquente mais bien contrôlable. 
+Un mode de vie sain, une surveillance régulière et une bonne compréhension de la maladie permettent d’éviter les complications graves. 
+L’objectif est d’autonomiser le patient dans sa gestion quotidienne, tout en maintenant un lien étroit avec son équipe médicale.

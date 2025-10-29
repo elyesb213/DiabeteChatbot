@@ -1,0 +1,89 @@
+[
+
+  {
+    "question": "Qu'est-ce que le diabète de type 2 ?",
+    "variations": [
+      "c'est quoi le diabète de type 2",
+      "pourquoi j'ai du diabète",
+      "pk diabete type 2",
+      "différence prédiabète et diabète ?"
+    ],
+    "answer": "Le diabète de type 2 est une maladie chronique où l'organisme devient résistant à l'insuline..."
+  },
+  {
+    "question": "Quelle est la différence entre diabète de type 1 et type 2 ?",
+    "answer": "Le diabète de type 1 apparaît souvent chez l'enfant ou l'adolescent et nécessite de l'insuline à vie. Le type 2, plus fréquent chez l'adulte, est lié à une résistance à l'insuline souvent associée au surpoids et à la sédentarité."
+  },
+  {
+    "question": "Quels sont les symptômes du diabète de type 2 ?",
+    "answer": "Les signes peuvent inclure une soif excessive, des urines fréquentes, une fatigue inhabituelle, une vision floue ou des infections répétées. Parfois, il n’y a aucun symptôme au début."
+  },
+  {
+    "question": "Comment diagnostique-t-on le diabète ?",
+    "answer": "Le diagnostic repose sur une prise de sang : glycémie à jeun ≥ 1,26 g/L à deux reprises, ou HbA1c ≥ 6,5%. Un médecin interprète ces résultats selon le contexte."
+  },
+  {
+    "question": "Qu'est-ce que l'HbA1c ?",
+    "answer": "L’HbA1c reflète la glycémie moyenne des trois derniers mois. Elle permet de suivre l’équilibre du diabète. En général, on vise une valeur inférieure à 7%, mais cela dépend du profil du patient."
+  },
+  {
+    "question": "Quels sont les traitements du diabète de type 2 ?",
+    "answer": "Ils associent souvent hygiène de vie (alimentation, activité physique) et médicaments oraux (comme la metformine). Parfois, l'insuline devient nécessaire si les autres traitements ne suffisent plus."
+  },
+  {
+    "question": "Le diabète peut-il disparaître ?",
+    "answer": "On parle parfois de rémission : une perte de poids importante, une activité physique régulière et une alimentation équilibrée peuvent normaliser la glycémie chez certaines personnes, mais un suivi médical reste essentiel."
+  },
+  {
+    "question": "Quels aliments éviter quand on est diabétique ?",
+    "answer": "Il faut limiter les sucres rapides (boissons sucrées, bonbons, pâtisseries) et les aliments très gras. L'équilibre repose sur des repas riches en fibres, légumes, protéines maigres et glucides complexes."
+  },
+  {
+    "question": "Peut-on manger des fruits quand on a le diabète ?",
+    "answer": "Oui, mais avec modération. Les fruits contiennent du sucre naturel (fructose). On privilégie ceux à faible index glycémique (pomme, poire, agrumes) et on évite les jus industriels."
+  },
+  {
+    "question": "Quelle activité physique est conseillée ?",
+    "answer": "Une activité d'au moins 30 minutes par jour, comme la marche rapide, le vélo ou la natation, aide à améliorer la sensibilité à l'insuline et à stabiliser la glycémie."
+  },
+  {
+    "question": "Qu'est-ce qu'une hypoglycémie ?",
+    "answer": "C’est une baisse du sucre dans le sang (< 0,7 g/L). Elle peut provoquer sueurs, tremblements, faim, confusion. Il faut consommer rapidement du sucre (3 morceaux) et recontrôler la glycémie."
+  },
+  {
+    "question": "Et une hyperglycémie, c'est quoi ?",
+    "answer": "C’est une glycémie trop élevée (> 1,8 g/L). Elle peut se manifester par une soif intense, des urines abondantes et de la fatigue. Si elle persiste, il faut contacter un médecin."
+  },
+  {
+    "question": "Quels sont les risques à long terme du diabète ?",
+    "answer": "Un diabète mal équilibré peut provoquer des complications aux yeux, aux reins, aux nerfs et au cœur. Un bon suivi médical permet de réduire ces risques."
+  },
+  {
+    "question": "Le stress influence-t-il le diabète ?",
+    "answer": "Oui, le stress libère des hormones (comme le cortisol) qui peuvent augmenter la glycémie. Des techniques de relaxation, le sport ou la méditation peuvent aider à mieux la contrôler."
+  },
+  {
+    "question": "Le diabète est-il héréditaire ?",
+    "answer": "Il existe une prédisposition familiale. Si un parent proche est diabétique, le risque augmente, mais le mode de vie joue un rôle majeur dans le déclenchement."
+  },
+  {
+    "question": "Comment surveiller sa glycémie ?",
+    "answer": "Avec un lecteur de glycémie ou un capteur en continu. Les mesures régulières permettent d’adapter le traitement et d’éviter les hypo ou hyperglycémies."
+  },
+  {
+    "question": "Puis-je boire de l'alcool si je suis diabétique ?",
+    "answer": "Avec modération. L’alcool peut faire baisser la glycémie, surtout à jeun ou avec certains médicaments. Il faut en parler à son médecin avant consommation."
+  },
+  {
+    "question": "Quelles sont les urgences liées au diabète ?",
+    "answer": "Hypoglycémie sévère (perte de connaissance) ou hyperglycémie très élevée avec malaise, vomissements ou respiration rapide : il faut appeler le 15 ou se rendre aux urgences immédiatement."
+  },
+  {
+    "question": "Quels spécialistes consultent les personnes diabétiques ?",
+    "answer": "Le suivi est souvent assuré par le médecin traitant et un diabétologue. D’autres spécialistes interviennent selon les besoins : ophtalmologue, podologue, diététicien, cardiologue."
+  },
+  {
+    "question": "Le diabète influence-t-il la cicatrisation ?",
+    "answer": "Oui, une glycémie élevée peut ralentir la cicatrisation et augmenter le risque d’infection. Il faut surveiller les plaies, surtout au niveau des pieds, et consulter en cas de blessure."
+  }
+]
