@@ -4,187 +4,9 @@ import streamlit as st
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import time
+import os
 
-# ============ CONFIG ============
-FAQ_PATH = "faqdiabete.json"
-KNOWLEDGE_PATH = "knowledge.txt"
-
-# ============ CHARGEMENT DES DONNÉES ============
-
-@st.cache_resource
-def load_model():
-    return SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
-
-@st.cache_data
-def load_faq(faq_path):
-    with open(faq_path, "r", encoding="utf-8") as f:
-        faq_data = json.load(f)
-    questions = [item["question"] for item in faq_data]
-    answers = [item["answer"] for item in faq_data]
-    return questions, answers
-
-@st.cache_data
-def load_knowledge(knowledge_path):
-    with open(knowledge_path, "r", encoding="utf-8") as f:
-        full_text = f.read()
-    chunks = [chunk.strip() for chunk in full_text.split("\n\n") if chunk.strip()]
-    return chunks
-
-model = load_model()
-faq_questions, faq_answers = load_faq(FAQ_PATH)
-knowledge_chunks = load_knowledge(KNOWLEDGE_PATH)
-
-faq_embeddings = model.encode(faq_questions)
-knowledge_embeddings = model.encode(knowledge_chunks)
-
-# ============ LOGIQUE IA ============
-
-def retrieve_from_faq(user_question):
-    q_vec = model.encode([user_question])
-    sims = cosine_similarity(q_vec, faq_embeddings)[0]
-    best_idx = int(np.argmax(sims))
-    best_score = float(sims[best_idx])
-    return faq_answers[best_idx], faq_questions[best_idx], best_score
-
-def retrieve_from_knowledge(user_question, top_k=2):
-    q_vec = model.encode([user_question])
-    sims = cosine_similarity(q_vec, knowledge_embeddings)[0]
-    best_idx = sims.argsort()[::-1][:top_k]
-    results = []
-    for i in best_idx:
-        results.append((knowledge_chunks[i], float(sims[i])))
-    return results
-
-def answer_user(user_question):
-    faq_answer, matched_q, faq_score = retrieve_from_faq(user_question)
-
-    if faq_score > 0.60:
-        final_text = (
-            f"📌 **Réponse :** {faq_answer}\n\n"
-            f"*Basé sur : \"{matched_q}\"*"
-        )
-        source = "FAQ"
-    else:
-        passages = retrieve_from_knowledge(user_question, top_k=2)
-        synthese = "**Informations pertinentes :**\n\n"
-        for (p, sc) in passages:
-            synthese += "• " + p.strip() + "\n\n"
-        synthese += (
-            "---\n\n"
-            "⚠️ *Ceci est une information générale. "
-            "Pour un avis personnalisé, contactez un professionnel de santé.*"
-        )
-        final_text = synthese
-        source = "knowledge"
-
-    return final_text, source
-
-# ============ STYLE CSS PERSONNALISÉ ============
-
-st.markdown("""
-<style>
-    /* Style général */
-    .main {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    }
-    
-    /* Messages utilisateur */
-    .user-message {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 15px 20px;
-        border-radius: 20px 20px 5px 20px;
-        margin: 10px 0;
-        max-width: 80%;
-        float: right;
-        clear: both;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    
-    /* Messages bot */
-    .bot-message {
-        background: white;
-        color: #333;
-        padding: 15px 20px;
-        border-radius: 20px 20px 20px 5px;
-        margin: 10px 0;
-        max-width: 80%;
-        float: left;
-        clear: both;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        border-left: 4px solid #667eea;
-    }
-    
-    /* Badge source */
-    .source-badge {
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 12px;
-        font-size: 0.75em;
-        margin-top: 8px;
-        font-weight: bold;
-    }
-    
-    .source-faq {
-        background: #10b981;
-        color: white;
-    }
-    
-    .source-knowledge {
-        background: #3b82f6;
-        color: white;
-    }
-    
-    /* Boutons de suggestions */
-    .suggestion-btn {
-        background: white;
-        border: 2px solid #667eea;
-        color: #667eea;
-        padding: 10px 20px;
-        border-radius: 25px;
-        margin: 5px;
-        cursor: pointer;
-        transition: all 0.3s;
-        display: inline-block;
-    }
-    
-    .suggestion-btn:hover {
-        background: #667eea;
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    
-    /* En-tête */
-    .header-container {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 30px;
-        border-radius: 15px;
-        margin-bottom: 30px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        color: white;
-        text-align: center;
-    }
-    
-    /* Alerte d'urgence */
-    .urgence-box {
-        background: #fee2e2;
-        border-left: 5px solid #ef4444;
-        padding: 15px;
-        border-radius: 8px;
-        margin: 20px 0;
-    }
-    
-    .clearfix::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# ============ INTERFACE STREAMLIT ============
-
+# ============ 1. CONFIGURATION DE LA PAGE (DOIT ÊTRE EN PREMIER) ============
 st.set_page_config(
     page_title="DiabèteBot+", 
     page_icon="🩸",
@@ -192,157 +14,151 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Initialisation de l'historique
+# ============ 2. CONFIGURATION DES CHEMINS ============
+FAQ_PATH = "faqdiabete.json"
+KNOWLEDGE_PATH = "knowledge.txt"
+
+# ============ 3. STYLE CSS PERSONNALISÉ ============
+st.markdown("""
+<style>
+    .main { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+    .user-message {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white; padding: 15px 20px; border-radius: 20px 20px 5px 20px;
+        margin: 10px 0; max-width: 80%; float: right; clear: both; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .bot-message {
+        background: white; color: #333; padding: 15px 20px; border-radius: 20px 20px 20px 5px;
+        margin: 10px 0; max-width: 80%; float: left; clear: both; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-left: 4px solid #667eea;
+    }
+    .source-badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.75em; margin-top: 8px; font-weight: bold; }
+    .source-faq { background: #10b981; color: white; }
+    .source-knowledge { background: #3b82f6; color: white; }
+    .header-container {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 30px; border-radius: 15px; margin-bottom: 30px; color: white; text-align: center;
+    }
+    .urgence-box { background: #fee2e2; border-left: 5px solid #ef4444; padding: 15px; border-radius: 8px; margin: 20px 0; }
+    .clearfix::after { content: ""; clear: both; display: table; }
+</style>
+""", unsafe_allow_html=True)
+
+# ============ 4. CHARGEMENT DES DONNÉES ET DU MODÈLE ============
+
+@st.cache_resource
+def load_model():
+    # Utilisation d'un modèle multilingue léger
+    return SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+
+@st.cache_data
+def load_data(faq_p, know_p):
+    # Chargement FAQ
+    if os.path.exists(faq_p):
+        with open(faq_p, "r", encoding="utf-8") as f:
+            faq_data = json.load(f)
+        questions = [item["question"] for item in faq_data]
+        answers = [item["answer"] for item in faq_data]
+    else:
+        st.error(f"Fichier {faq_p} introuvable !")
+        questions, answers = [], []
+
+    # Chargement Knowledge
+    if os.path.exists(know_p):
+        with open(know_p, "r", encoding="utf-8") as f:
+            full_text = f.read()
+        chunks = [chunk.strip() for chunk in full_text.split("\n\n") if chunk.strip()]
+    else:
+        st.error(f"Fichier {know_p} introuvable !")
+        chunks = []
+        
+    return questions, answers, chunks
+
+# Initialisation
+model = load_model()
+faq_questions, faq_answers, knowledge_chunks = load_data(FAQ_PATH, KNOWLEDGE_PATH)
+
+# Encodage (mis en cache pour éviter de recalculer à chaque interaction)
+@st.cache_data
+def get_embeddings(_model, _questions, _chunks):
+    faq_emb = _model.encode(_questions) if _questions else []
+    know_emb = _model.encode(_chunks) if _chunks else []
+    return faq_emb, know_emb
+
+faq_embeddings, knowledge_embeddings = get_embeddings(model, faq_questions, knowledge_chunks)
+
+# ============ 5. LOGIQUE IA ============
+
+def retrieve_from_faq(user_question):
+    if not faq_questions: return "Désolé, FAQ vide.", "", 0
+    q_vec = model.encode([user_question])
+    sims = cosine_similarity(q_vec, faq_embeddings)[0]
+    best_idx = int(np.argmax(sims))
+    return faq_answers[best_idx], faq_questions[best_idx], float(sims[best_idx])
+
+def retrieve_from_knowledge(user_question, top_k=2):
+    if not knowledge_chunks: return [("Base de connaissances indisponible.", 0)]
+    q_vec = model.encode([user_question])
+    sims = cosine_similarity(q_vec, knowledge_embeddings)[0]
+    best_indices = sims.argsort()[::-1][:top_k]
+    return [(knowledge_chunks[i], float(sims[i])) for i in best_indices]
+
+def answer_user(user_question):
+    faq_answer, matched_q, faq_score = retrieve_from_faq(user_question)
+
+    if faq_score > 0.65:
+        final_text = f"📌 **Réponse :** {faq_answer}\n\n*Basé sur : \"{matched_q}\"*"
+        source = "FAQ"
+    else:
+        passages = retrieve_from_knowledge(user_question, top_k=2)
+        synthese = "**Informations pertinentes :**\n\n"
+        for (p, sc) in passages:
+            synthese += "• " + p.strip() + "\n\n"
+        synthese += "---\n\n⚠️ *Ceci est une information générale.*"
+        final_text = synthese
+        source = "knowledge"
+
+    return final_text, source
+
+# ============ 6. INTERFACE ET HISTORIQUE ============
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# ============ SIDEBAR ============
+# SIDEBAR
 with st.sidebar:
     st.markdown("### 🩸 DiabèteBot+")
-    st.markdown("---")
-    
-    st.markdown("#### 📊 À propos")
-    st.info(
-        "Ce chatbot utilise l'intelligence artificielle pour répondre à vos questions "
-        "sur le diabète de type 2. Il combine une FAQ précise et une base de connaissances étendue."
-    )
-    
-    st.markdown("#### 🎯 Capacités")
-    st.markdown("""
-    - ✅ Symptômes et diagnostic
-    - ✅ Alimentation adaptée
-    - ✅ Activité physique
-    - ✅ Traitements et suivi
-    - ✅ Complications possibles
-    - ✅ Prévention
-    """)
-    
-    st.markdown("---")
-    
-    st.markdown("#### ⚡ Statistiques")
-    st.metric("Questions posées", len([m for m in st.session_state.messages if m["role"] == "user"]))
+    st.info("Assistant IA pour le diabète de type 2.")
     st.metric("Base FAQ", len(faq_questions))
-    st.metric("Documents", len(knowledge_chunks))
-    
-    st.markdown("---")
-    
-    if st.button("🔄 Nouvelle conversation", use_container_width=True):
+    if st.button("🔄 Nouvelle conversation"):
         st.session_state.messages = []
         st.rerun()
+    st.markdown("""<div class="urgence-box"><strong>☎️ Urgence : Appelez le 15</strong></div>""", unsafe_allow_html=True)
+
+# EN-TÊTE
+st.markdown("""<div class="header-container"><h1>🩸 DiabèteBot+</h1><p>Votre assistant intelligent</p></div>""", unsafe_allow_html=True)
+
+# AFFICHAGE CHAT
+for message in st.session_state.messages:
+    role_class = "user-message" if message["role"] == "user" else "bot-message"
+    label = "👤 Vous" if message["role"] == "user" else "🤖 DiabèteBot+"
+    source_badge = ""
+    if message["role"] != "user":
+        s_class = "source-faq" if message.get("source") == "FAQ" else "source-knowledge"
+        s_text = "FAQ ✅" if message.get("source") == "FAQ" else "Base de connaissances 📚"
+        source_badge = f'<br><span class="source-badge {s_class}">{s_text}</span>'
     
-    st.markdown("---")
-    
-    st.markdown("#### 🚨 Urgences")
-    st.markdown("""
-    <div class="urgence-box">
-    <strong>En cas d'urgence :</strong><br>
-    • Malaise grave<br>
-    • Confusion importante<br>
-    • Douleur thoracique<br>
-    • Difficulté respiratoire<br>
-    <br>
-    <strong>☎️ Appelez le 15 immédiatement</strong>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f"""<div class="clearfix"><div class="{role_class}"><strong>{label}</strong><br>{message["content"]}{source_badge}</div></div>""", unsafe_allow_html=True)
 
-# ============ EN-TÊTE PRINCIPAL ============
-st.markdown("""
-<div class="header-container">
-    <h1>🩸 DiabèteBot+</h1>
-    <p style="font-size: 1.2em; margin-top: 10px;">
-        Votre assistant intelligent pour le diabète de type 2
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
-# ============ QUESTIONS SUGGÉRÉES ============
-if len(st.session_state.messages) == 0:
-    st.markdown("### 💡 Questions fréquentes")
-    
-    suggestions = [
-        "Quels sont les symptômes du diabète de type 2 ?",
-        "Quelle alimentation adopter ?",
-        "Quels sont les risques de complications ?",
-        "Comment surveiller ma glycémie ?",
-        "Quel rôle joue l'activité physique ?"
-    ]
-    
-    cols = st.columns(2)
-    for idx, suggestion in enumerate(suggestions):
-        with cols[idx % 2]:
-            if st.button(suggestion, key=f"suggestion_{idx}", use_container_width=True):
-                st.session_state.messages.append({"role": "user", "content": suggestion})
-                st.rerun()
-
-# ============ AFFICHAGE DE L'HISTORIQUE ============
-chat_container = st.container()
-
-with chat_container:
-    for message in st.session_state.messages:
-        if message["role"] == "user":
-            st.markdown(f"""
-            <div class="clearfix">
-                <div class="user-message">
-                    <strong>👤 Vous</strong><br>
-                    {message["content"]}
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-        else:
-            source_class = "source-faq" if message.get("source") == "FAQ" else "source-knowledge"
-            source_text = "FAQ ✅" if message.get("source") == "FAQ" else "Base de connaissances 📚"
-            
-            st.markdown(f"""
-            <div class="clearfix">
-                <div class="bot-message">
-                    <strong>🤖 DiabèteBot+</strong><br><br>
-                    {message["content"]}
-                    <br>
-                    <span class="source-badge {source_class}">{source_text}</span>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-
-# ============ ZONE DE SAISIE ============
+# ZONE DE SAISIE
 st.markdown("---")
+user_input = st.chat_input("Posez votre question sur le diabète...")
 
-col1, col2 = st.columns([6, 1])
-
-with col1:
-    user_input = st.text_input(
-        "Posez votre question ici...",
-        key="user_input",
-        placeholder="Ex: Comment gérer mon diabète au quotidien ?",
-        label_visibility="collapsed"
-    )
-
-with col2:
-    send_button = st.button("📤 Envoyer", use_container_width=True, type="primary")
-
-# ============ TRAITEMENT DE LA QUESTION ============
-if send_button and user_input:
-    # Ajouter la question de l'utilisateur
+if user_input:
     st.session_state.messages.append({"role": "user", "content": user_input})
-    
-    # Afficher un spinner pendant le traitement
-    with st.spinner("🤔 DiabèteBot+ réfléchit..."):
-        time.sleep(0.5)  # Petite pause pour l'effet visuel
+    with st.spinner("Réflexion en cours..."):
         bot_reply, source_used = answer_user(user_input)
-    
-    # Ajouter la réponse du bot
-    st.session_state.messages.append({
-        "role": "assistant",
-        "content": bot_reply,
-        "source": source_used
-    })
-    
-    # Recharger la page pour afficher les nouveaux messages
+        st.session_state.messages.append({"role": "assistant", "content": bot_reply, "source": source_used})
     st.rerun()
 
-# ============ AVERTISSEMENT MÉDICAL ============
-st.markdown("---")
-st.warning(
-    "⚠️ **Avertissement médical :** Ce chatbot fournit des informations générales à but éducatif. "
-    "Il ne remplace en aucun cas une consultation médicale professionnelle. "
-    "Pour toute question concernant votre santé, consultez votre médecin ou un professionnel de santé qualifié."
-)
+st.warning("⚠️ Ce chatbot ne remplace pas un avis médical.")
